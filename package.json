@@ -1,0 +1,53 @@
+{
+  "name": "maritime-shadow-fleet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trace how sanctioned oil moves through the world \u2014 from vessel to a related company to a destination.",
+  "engines": {
+    "node": ">=20.11.0 <23"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "typecheck:lib": "tsc -p tsconfig.lib.json",
+    "data:seed": "tsx scripts/build-seed.ts",
+    "data:qa": "tsx scripts/qa.ts",
+    "geo:csv": "tsx scripts/to-geo-csv.ts",
+    "data:normalize": "tsx scripts/normalize.ts",
+    "fetch:opensanctions": "tsx scripts/fetch-opensanctions-maritime.ts",
+    "fetch:ofac": "tsx scripts/fetch-ofac-sdn.ts",
+    "fetch:uk": "tsx scripts/fetch-uk-sanctions.ts",
+    "parse:kse": "tsx scripts/parse-kse-core.ts",
+    "collect:ais": "tsx scripts/collect-ais.ts",
+    "stats": "tsx scripts/stats.ts",
+    "check:docs": "tsx scripts/check-docs.ts"
+  },
+  "dependencies": {
+    "@deck.gl/core": "^9.1.0",
+    "@deck.gl/geo-layers": "^9.1.0",
+    "@deck.gl/layers": "^9.1.0",
+    "@deck.gl/react": "^9.1.0",
+    "cytoscape": "^3.30.0",
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/cytoscape": "^3.21.0",
+    "@types/node": "^20.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.5.10",
+    "fast-xml-parser": "^5.8.0",
+    "pdf-parse": "^1.1.1",
+    "postcss": "^8.5.15",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "ws": "^8.18.0"
+  },
+  "overrides": {
+    "postcss": "$postcss"
+  }
+}

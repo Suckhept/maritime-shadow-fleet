@@ -1,0 +1,93 @@
+[
+  {
+    "id": "LBR",
+    "name": "Liberia",
+    "isoAlpha3": "LBR",
+    "lat": 6.43,
+    "lon": -9.43
+  },
+  {
+    "id": "MHL",
+    "name": "Marshall Islands",
+    "isoAlpha3": "MHL",
+    "lat": 7.13,
+    "lon": 171.18
+  },
+  {
+    "id": "PAN",
+    "name": "Panama",
+    "isoAlpha3": "PAN",
+    "lat": 8.54,
+    "lon": -80.78
+  },
+  {
+    "id": "GAB",
+    "name": "Gabon",
+    "isoAlpha3": "GAB",
+    "lat": -0.8,
+    "lon": 11.61
+  },
+  {
+    "id": "GIN",
+    "name": "Guinea",
+    "isoAlpha3": "GIN",
+    "lat": 9.51,
+    "lon": -13.71
+  },
+  {
+    "id": "PLW",
+    "name": "Palau",
+    "isoAlpha3": "PLW",
+    "lat": 7.51,
+    "lon": 134.58
+  },
+  {
+    "id": "TUR",
+    "name": "Turkey",
+    "isoAlpha3": "TUR",
+    "lat": 38.96,
+    "lon": 35.24
+  },
+  {
+    "id": "IND",
+    "name": "India",
+    "isoAlpha3": "IND",
+    "lat": 20.59,
+    "lon": 78.96
+  },
+  {
+    "id": "ARE",
+    "name": "United Arab Emirates",
+    "isoAlpha3": "ARE",
+    "lat": 23.42,
+    "lon": 53.85
+  },
+  {
+    "id": "CHN",
+    "name": "China",
+    "isoAlpha3": "CHN",
+    "lat": 35.86,
+    "lon": 104.2
+  },
+  {
+    "id": "RUS",
+    "name": "Russia",
+    "isoAlpha3": "RUS",
+    "lat": 61.52,
+    "lon": 105.32
+  },
+  {
+    "id": "USA",
+    "name": "United States",
+    "isoAlpha3": "USA",
+    "lat": 39.5,
+    "lon": -98.35
+  },
+  {
+    "id": "GBR",
+    "name": "United Kingdom",
+    "isoAlpha3": "GBR",
+    "lat": 55.38,
+    "lon": -3.44
+  }
+]

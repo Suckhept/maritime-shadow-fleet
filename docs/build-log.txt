@@ -1,0 +1,22 @@
+# Clean build log — Maritime Shadow Fleet (pilot submission build)
+# Runtime: Node v22.22.2, npm 10.9.7.  .nvmrc pins exactly 22.22.2.
+# Live OFAC SLS re-verified 2026-06-15 (SDN List 2026-06-11). Per-record UIDs: data/ofac-verification.json.
+# Counts (from seed): 25 vessels, 10 companies, 35 designations, 27 relations; 32 OFAC active + 1 UK active + 2 removed + 0 current-unverified.
+# ----------------------------------------------------------------------
+$ npm run data:seed && npm run data:normalize && npm run geo:csv && npm run stats && npm run check:docs
+DOC CHECK PASS — no stale/contradictory prose; STATS block matches seed.
+
+$ npm run data:qa
+  errors: 0 {}
+  warns : 0 {}
+STRUCTURAL VALIDATION PASS — local structure only. This does NOT verify source content,
+
+$ npm run typecheck:lib
+typecheck:lib OK
+
+$ npm run build
+ ✓ Compiled successfully in 5.1s
+Route (app)                                 Size  First Load JS
+
+$ npm audit
+found 0 vulnerabilities

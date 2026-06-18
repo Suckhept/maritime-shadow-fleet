@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ofac",
+    "name": "Office of Foreign Assets Control",
+    "jurisdiction": "United States",
+    "type": "government",
+    "sourceUrl": "https://ofac.treasury.gov/sanctions-list-service"
+  },
+  {
+    "id": "uk-fcdo",
+    "name": "Foreign, Commonwealth and Development Office",
+    "jurisdiction": "United Kingdom",
+    "type": "government",
+    "sourceUrl": "https://www.gov.uk/government/publications/the-uk-sanctions-list"
+  },
+  {
+    "id": "kse-institute",
+    "name": "Kyiv School of Economics Institute",
+    "jurisdiction": null,
+    "type": "research-ngo",
+    "sourceUrl": "https://kse.ua/"
+  }
+]

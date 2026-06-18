@@ -1,0 +1,20 @@
+[
+  {
+    "id": "baltic-sea",
+    "name": "Baltic Sea",
+    "lat": 58.5,
+    "lon": 20
+  },
+  {
+    "id": "black-sea",
+    "name": "Black Sea",
+    "lat": 43,
+    "lon": 34
+  },
+  {
+    "id": "pacific-ocean",
+    "name": "Pacific Ocean",
+    "lat": 0,
+    "lon": 160
+  }
+]

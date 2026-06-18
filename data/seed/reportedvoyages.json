@@ -1,0 +1,13 @@
+[
+  {
+    "id": "rv-9610810-primorsk-zhoushan",
+    "vesselImo": "9610810",
+    "originPortId": "RUPRI",
+    "destinationPortId": "CNZOS",
+    "reportedPeriod": "2024-07",
+    "timeGranularity": "month",
+    "observationType": "secondary-analysis",
+    "note": "Reported by Brookings (citing Bloomberg vessel-tracking analysis) at month-level resolution. Not AIS-confirmed; not a sanctions listing.",
+    "sourceUrl": "https://www.brookings.edu/articles/strains-on-the-sovcomflot-oil-tanker-fleet/"
+  }
+]

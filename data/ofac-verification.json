@@ -1,0 +1,349 @@
+{
+  "generatedFrom": "data/seed/designations.json",
+  "sanctionsListSearch": "https://sanctionssearch.ofac.treas.gov/",
+  "sdnListVersion": "2026-06-11",
+  "verifiedAt": "2026-06-15",
+  "note": "Each numeric id is the OFAC SDN UID, used by the Sanctions List Search as Details.aspx?id=<UID>. Statuses re-checked on the live SLS on the verifiedAt date; 0-result lookups are recorded as removed.",
+  "records": [
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9610808",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46957",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46957",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9610793",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46991",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46991",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9270529",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47037",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47037",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9256078",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47034",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47034",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9256054",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47022",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47022",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9413559",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46972",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46972",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9412359",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47053",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47053",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9411020",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47006",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47006",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9341067",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47007",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47007",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9312884",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47009",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47009",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9341093",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47003",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47003",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9312896",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47046",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47046",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9339313",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46976",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46976",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9249128",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47015",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47015",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9381732",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47216",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47216",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9410894",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47217",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47217",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9410870",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47218",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47218",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9249087",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47219",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47219",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9381744",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47233",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47233",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9864837",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "50629",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=50629",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9324277",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "50628",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=50628",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9610810",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46611",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46611",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9421960",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "45555",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=45555",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9334038",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "removed",
+      "uniqueId": null,
+      "statusSource": "https://ofac.treasury.gov/recent-actions/20240426",
+      "statusVerifiedAt": "2024-04-26",
+      "dateRemoved": "2024-04-26"
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "joint-stock-company-sovcomflot",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "34741",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=34741",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "hennesea-holdings-limited",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "47212",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=47212",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "streymoy-shipping-limited",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46609",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46609",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "gotik-shipping-co",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "50626",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=50626",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "plio-energy-cargo-shipping-opc-private-limited",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "50627",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=50627",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "limited-liability-company-arctic-lng-2",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "46030",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=46030",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "lumber-marine-sa",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "active",
+      "uniqueId": "45554",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=45554",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "ice-pearl-navigation-corp",
+      "program": "RUSSIA-EO14024",
+      "currentStatus": "removed",
+      "uniqueId": null,
+      "statusSource": "https://ofac.treasury.gov/recent-actions/20240426",
+      "statusVerifiedAt": "2024-04-26",
+      "dateRemoved": "2024-04-26"
+    },
+    {
+      "appliesToType": "company",
+      "appliesToId": "winky-international-limited",
+      "program": "VENEZUELA-EO13850",
+      "currentStatus": "active",
+      "uniqueId": "56723",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=56723",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    },
+    {
+      "appliesToType": "vessel",
+      "appliesToId": "9277735",
+      "program": "VENEZUELA-EO13850",
+      "currentStatus": "active",
+      "uniqueId": "56724",
+      "statusSource": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=56724",
+      "statusVerifiedAt": "2026-06-15",
+      "dateRemoved": null
+    }
+  ]
+}

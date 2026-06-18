@@ -1,0 +1,18 @@
+[
+  {
+    "fromCompanyId": "limited-liability-company-arctic-lng-2",
+    "toCompanyId": "gotik-shipping-co",
+    "relation": "linkedTo",
+    "confidence": "reported",
+    "note": "OFAC SDN entry (2024-09-05): Gotik Shipping Co Linked To Limited Liability Company Arctic LNG 2. OFAC does not state equity ownership.",
+    "sourceUrl": "https://ofac.treasury.gov/recent-actions/20240905"
+  },
+  {
+    "fromCompanyId": "limited-liability-company-arctic-lng-2",
+    "toCompanyId": "plio-energy-cargo-shipping-opc-private-limited",
+    "relation": "linkedTo",
+    "confidence": "reported",
+    "note": "OFAC SDN entry (2024-09-05): Plio Energy Cargo Shipping OPC Private Limited Linked To Limited Liability Company Arctic LNG 2. OFAC does not state equity ownership.",
+    "sourceUrl": "https://ofac.treasury.gov/recent-actions/20240905"
+  }
+]

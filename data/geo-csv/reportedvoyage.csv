@@ -1,0 +1,2 @@
+vessel,origin,destination,reportedPeriod,timeGranularity,observationType,note,sourceUrl
+Viktor Bakaev,Primorsk,Zhoushan,2024-07,month,secondary-analysis,Reported by Brookings (citing Bloomberg vessel-tracking analysis) at month-level resolution. Not AIS-confirmed; not a sanctions listing.,https://www.brookings.edu/articles/strains-on-the-sovcomflot-oil-tanker-fleet/

@@ -1,0 +1,3 @@
+name,unlocode,country,lat,lon,coordinateStatus,coordinateSourceType,codeSourceUrl,coordinateSourceUrl,sourceVersion,verifiedAt
+Primorsk,RUPRI,Russia,60.333,28.717,approximate,secondary,https://service.unece.org/trade/locode/ru.htm,https://en.wikipedia.org/wiki/Port_of_Primorsk,UNECE LOCODE 2024-2,2026-06-15
+Zhoushan,CNZOS,China,29.986,122.207,approximate,secondary,https://service.unece.org/trade/locode/cn.htm,https://en.wikipedia.org/wiki/Zhoushan,UNECE LOCODE 2024-2,2026-06-15

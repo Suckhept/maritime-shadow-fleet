@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20          # a stalled build fails instead of hanging forever
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"   # exact pin (22.22.2)
+          cache: "npm"
+      - run: npm ci
+      - run: npm run typecheck:lib
+      # Regenerate committed artifacts, then FAIL if they drift from what's checked in.
+      - run: npm run data:seed
+      - run: npm run data:qa
+      - run: npm run geo:csv
+      - run: npm run data:normalize        # must succeed (output is gitignored)
+      - run: npm run stats                 # regenerate README factual block from seed
+      - run: npm run check:docs            # prose contradiction linter (README/DEMO/SOURCES vs seed)
+      - name: fail on generated-artifact drift
+        run: git diff --exit-code -- data/seed data/geo-csv data/ofac-verification.json README.md
+      - run: npm run build
+      - run: npm audit                      # full audit, hard gate (no '|| true')

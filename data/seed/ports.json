@@ -1,0 +1,30 @@
+[
+  {
+    "id": "RUPRI",
+    "name": "Primorsk",
+    "unlocode": "RUPRI",
+    "countryId": "RUS",
+    "lat": 60.333,
+    "lon": 28.717,
+    "codeSourceUrl": "https://service.unece.org/trade/locode/ru.htm",
+    "coordinateSourceUrl": "https://en.wikipedia.org/wiki/Port_of_Primorsk",
+    "coordinateStatus": "approximate",
+    "coordinateSourceType": "secondary",
+    "sourceVersion": "UNECE LOCODE 2024-2",
+    "verifiedAt": "2026-06-15"
+  },
+  {
+    "id": "CNZOS",
+    "name": "Zhoushan",
+    "unlocode": "CNZOS",
+    "countryId": "CHN",
+    "lat": 29.986,
+    "lon": 122.207,
+    "codeSourceUrl": "https://service.unece.org/trade/locode/cn.htm",
+    "coordinateSourceUrl": "https://en.wikipedia.org/wiki/Zhoushan",
+    "coordinateStatus": "approximate",
+    "coordinateSourceType": "secondary",
+    "sourceVersion": "UNECE LOCODE 2024-2",
+    "verifiedAt": "2026-06-15"
+  }
+]

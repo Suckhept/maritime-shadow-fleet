@@ -1,0 +1,9 @@
+node_modules
+.next
+scripts/.raw
+data/dataset.json
+*.log
+# generated merged dataset (regenerate via `npm run data:normalize`; not a committed deliverable)
+scripts/.raw/
+data/derived/
+*.tsbuildinfo
