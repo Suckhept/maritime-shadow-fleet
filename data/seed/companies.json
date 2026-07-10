@@ -115,15 +115,15 @@
     "id": "west-maritime-services-and-trading-inc",
     "name": "West Maritime Services and Trading Inc",
     "imoCompanyNumber": null,
-    "jurisdiction": null,
-    "describedAsBasedIn": null,
+    "jurisdiction": "not stated in source",
+    "describedAsBasedIn": "not stated in source",
     "addressCountryId": null,
-    "registeredAddress": null,
+    "registeredAddress": "not stated in source",
     "taxId": null,
     "registrationNumber": null,
     "lei": null,
     "sourceUrl": "https://assets.publishing.service.gov.uk/media/698b59868492b54795c1be6d/Sanctions_Notice__Russia__10_February_2026.pdf",
-    "jurisdictionSourceType": null
+    "jurisdictionSourceType": "Not stated in the UK ship specification (10 Feb 2026). Registry aggregator (Ukraine GUR, Equasis-derived) reports Saint Kitts and Nevis, reg. 0035133; not promoted pending primary-source (Equasis/GISIS) confirmation."
   },
   {
     "id": "winky-international-limited",
