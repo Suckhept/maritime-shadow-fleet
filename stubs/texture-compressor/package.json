@@ -1,0 +1,6 @@
+{
+  "name": "texture-compressor",
+  "version": "0.0.0-stub",
+  "description": "Security stub. Replaces texture-compressor (pulls unpatched image-size, GHSA-w3rx-r6r6-pgpr / GHSA-5p2g-fcmc-qvqq) via npm overrides. Only reached by @loaders.gl compressed-texture encoding, which this app never invokes (raster OSM tiles via TileLayer/BitmapLayer only).",
+  "main": "index.js"
+}

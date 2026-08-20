@@ -1,173 +1,133 @@
-/**
- * to-geo-csv.ts — emit Geo CSV import templates (one file per type).
- *
- * Conventions enforced (see ONTOLOGY.md):
- *  - one entity per row; dates YYYY-MM-DD; full https URLs; UTF-8
- *  - relation columns reference the canonical entity NAME (Geo resolves by name)
- *  - names: sentence case, official full name, no parenthetical annotations
- *
- * Run:  npx tsx scripts/to-geo-csv.ts [sourceDir=data/seed] [outDir=data/geo-csv]
- */
+// Emit the Geo-schema-mapped CSV export into data/geo-csv/.
+// Nine CSVs matching the published World Affairs schema (Vessel type approved 2026-08):
+//   vessels, vessel_categories, companies, government_bodies, sanctions_programmes,
+//   sanctioned_by_relations, ownership_relations, linked_to_relations, countries.
+// Output is byte-compatible with the reviewed export (CRLF, minimal quoting).
 import fs from "node:fs";
 import path from "node:path";
-import type {
-  Vessel, Company, Country, Region, Port, Authority,
-  Designation, OwnershipLink, BeneficialOwnerLink, CompanyLink, ReportedVoyage, Person,
-} from "../src/lib/types";
 
-const SRC = process.argv[2] ?? "data/seed";
-const OUT = process.argv[3] ?? "data/geo-csv";
+const SEED = path.join("data", "seed");
+const OUT = path.join("data", "geo-csv");
+const load = (f: string) => JSON.parse(fs.readFileSync(path.join(SEED, f), "utf-8"));
 
-const read = <T>(f: string): T =>
-  JSON.parse(fs.readFileSync(path.join(SRC, f), "utf8")) as T;
+const vessels = load("vessels.json");
+const companies = load("companies.json");
+const designations = load("designations.json");
+const ownership = load("ownership.json");
+const companyLinks = load("companylinks.json");
+const countries = load("countries.json");
+const authorities = load("authorities.json");
 
-const vessels = read<Vessel[]>("vessels.json");
-const companies = read<Company[]>("companies.json");
-const persons = read<Person[]>("persons.json");
-const ports = read<Port[]>("ports.json");
-const countries = read<Country[]>("countries.json");
-const regions = read<Region[]>("regions.json");
-const authorities = read<Authority[]>("authorities.json");
-const designations = read<Designation[]>("designations.json");
-const ownership = read<OwnershipLink[]>("ownership.json");
-const beneficialOwners = read<BeneficialOwnerLink[]>("beneficialOwners.json");
-const companyLinks = read<CompanyLink[]>("companylinks.json");
-const reportedVoyages = read<ReportedVoyage[]>("reportedvoyages.json");
+const cmap = new Map<string, string>(countries.map((c: any) => [c.id, c.name]));
+const comap = new Map<string, string>(companies.map((c: any) => [c.id, c.name]));
+const vmap = new Map<string, string>(vessels.map((v: any) => [v.imo, v.name]));
+const amap = new Map<string, string>(authorities.map((a: any) => [a.id, a.name]));
 
-const countryName = new Map(countries.map((c) => [c.id, c.name]));
-const companyName = new Map(companies.map((c) => [c.id, c.name]));
-const vesselName = new Map(vessels.map((v) => [v.imo, v.name]));
-const portName = new Map(ports.map((p) => [p.id, p.name]));
-const authorityName = new Map(authorities.map((a) => [a.id, a.name]));
-const personName = new Map(persons.map((p) => [p.id, p.name]));
-
-function cell(v: unknown): string {
-  if (v === null || v === undefined) return "";
-  const s = String(v);
-  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-}
-function csv(rows: Record<string, unknown>[], cols: string[]): string {
-  const head = cols.join(",");
-  const body = rows.map((r) => cols.map((c) => cell(r[c])).join(",")).join("\n");
-  return `${head}\n${body}\n`;
-}
-function write(name: string, content: string) {
-  fs.mkdirSync(OUT, { recursive: true });
-  fs.writeFileSync(path.join(OUT, name), content, "utf8");
-  console.log(`wrote ${path.join(OUT, name)}`);
-}
-
-const appliesToName = (d: Designation) =>
-  d.appliesToType === "vessel" ? vesselName.get(d.appliesToId) ?? d.appliesToId
-                               : companyName.get(d.appliesToId) ?? d.appliesToId;
-
-const vesselStatus = (imo: string): string => {
-  const ds = designations.filter((d) => d.appliesToType === "vessel" && d.appliesToId === imo);
-  if (ds.some((d) => d.currentStatus === "active")) return "active (verified)";
-  if (ds.some((d) => d.currentStatus === "current-unverified")) return "listed; current status not verified";
-  if (ds.length && ds.every((d) => d.currentStatus === "removed")) return "removed (delisted)";
-  return "no designation";
+// Controlled vocabulary normalisation (matches the published Vessel category type).
+const CAT: Record<string, string> = {
+  "Crude oil tanker": "Crude oil tanker",
+  "Products tanker": "Oil products tanker",
+  "Oil Products Tanker": "Oil products tanker",
+  "LNG carrier": "LNG carrier",
 };
-write("vessel.csv", csv(
-  vessels.map((v) => ({
-    name: v.name, imo: v.imo, mmsi: v.mmsi, vesselType: v.vesselType,
-    aliases: v.aliases.join("; "),
-    flag: v.flagCountryId ? countryName.get(v.flagCountryId) : "",
-    flagStatus: v.flagStatus, flagSourceUrl: v.flagSourceUrl ?? "", flagVerifiedAt: v.flagVerifiedAt ?? "",
-    aliasSourceUrl: v.aliasSourceUrl ?? "", nameSourceUrl: v.nameSourceUrl ?? "",
-    yearBuilt: v.yearBuilt, callSign: v.callSign, status: vesselStatus(v.imo), sourceUrl: v.sourceUrl,
-  })),
-  ["name", "imo", "mmsi", "vesselType", "aliases", "flag", "flagStatus", "flagSourceUrl", "flagVerifiedAt", "aliasSourceUrl", "nameSourceUrl", "yearBuilt", "callSign", "status", "sourceUrl"],
-));
+const ROLE: Record<string, string> = {
+  interestHolder: "interest holder",
+  beneficialOwner: "beneficial owner",
+  registeredOwner: "registered owner",
+  ownerOperator: "owner-operator",
+};
 
-write("company.csv", csv(
-  companies.map((c) => ({
-    name: c.name, imoCompanyNumber: c.imoCompanyNumber,
-    jurisdictionOfIncorporation: c.jurisdiction, jurisdictionSourceType: c.jurisdictionSourceType ?? "",
-    describedAsBasedIn: c.describedAsBasedIn,
-    listedAddressCountry: c.addressCountryId ? countryName.get(c.addressCountryId) : "",
-    registeredAddress: c.registeredAddress, taxId: c.taxId, registrationNumber: c.registrationNumber,
-    lei: c.lei, sourceUrl: c.sourceUrl,
-  })),
-  ["name", "imoCompanyNumber", "jurisdictionOfIncorporation", "jurisdictionSourceType", "describedAsBasedIn", "listedAddressCountry", "registeredAddress", "taxId", "registrationNumber", "lei", "sourceUrl"],
-));
+// python-csv-compatible cell encoding: quote only when needed, escape " as "".
+const cell = (v: unknown): string => {
+  const s = v === null || v === undefined ? "" : String(v);
+  return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+};
+const write = (name: string, header: string[], rows: unknown[][]) => {
+  const lines = [header, ...rows].map((r) => (r as unknown[]).map(cell).join(","));
+  fs.writeFileSync(path.join(OUT, name), lines.join("\r\n") + "\r\n");
+  console.log(`wrote data/geo-csv/${name} (${rows.length} rows)`);
+};
 
-write("designation.csv", csv(
-  designations.map((d) => ({
-    name: `${appliesToName(d)} — ${d.listName} ${d.program ?? ""}`.trim(),
-    appliesTo: appliesToName(d), appliesToType: d.appliesToType,
-    listName: d.listName, nature: d.nature, program: d.program, designationDate: d.designationDate,
-    currentStatus: d.currentStatus, statusVerifiedAt: d.statusVerifiedAt, statusSource: d.statusSource ?? "",
-    dateRemoved: d.dateRemoved, issuedBy: authorityName.get(d.authorityId) ?? d.authorityId,
-    uniqueId: d.uniqueId ?? "", sourceUrl: d.sourceUrl,
-  })),
-  ["name", "appliesTo", "appliesToType", "listName", "nature", "program", "designationDate", "currentStatus", "statusVerifiedAt", "statusSource", "dateRemoved", "issuedBy", "uniqueId", "sourceUrl"],
-));
+fs.mkdirSync(OUT, { recursive: true });
+// Remove stale outputs so the directory always holds exactly the current export.
+const KEEP = new Set([
+  "vessels.csv", "vessel_categories.csv", "companies.csv", "government_bodies.csv",
+  "sanctions_programmes.csv", "sanctioned_by_relations.csv", "ownership_relations.csv",
+  "linked_to_relations.csv", "countries.csv",
+]);
+for (const f of fs.readdirSync(OUT)) if (f.endsWith(".csv") && !KEEP.has(f)) fs.unlinkSync(path.join(OUT, f));
 
-write("authority.csv", csv(
-  authorities.map((a) => ({ name: a.name, jurisdiction: a.jurisdiction, type: a.type, sourceUrl: a.sourceUrl ?? "" })),
-  ["name", "jurisdiction", "type", "sourceUrl"],
-));
+// 1. Vessels — per the published schema (IMO as Integer).
+write("vessels.csv",
+  ["Name", "IMO", "MMSI", "Vessel category", "Call sign", "Year built", "Former names", "Flag state", "Name source URL", "Flag source URL", "Alias source URL"],
+  vessels.map((v: any) => [
+    v.name, parseInt(v.imo, 10), v.mmsi ?? "", CAT[v.vesselType], v.callSign ?? "",
+    v.yearBuilt ?? "", (v.aliases ?? []).join("; "), cmap.get(v.flagCountryId),
+    v.nameSourceUrl ?? v.sourceUrl ?? "", v.flagSourceUrl ?? "", v.aliasSourceUrl ?? "",
+  ]));
 
-write("country.csv", csv(
-  countries.map((c) => ({ name: c.name, isoAlpha3: c.isoAlpha3, lat: c.lat, lon: c.lon })),
-  ["name", "isoAlpha3", "lat", "lon"],
-));
+// 2. Vessel category entities (controlled vocabulary).
+write("vessel_categories.csv", ["Name"],
+  [...new Set(Object.values(CAT))].sort().map((c) => [c]));
 
-write("region.csv", csv(
-  regions.map((r) => ({ name: r.name, lat: r.lat, lon: r.lon })),
-  ["name", "lat", "lon"],
-));
+// 3. Companies (registry-tier enrichment carried with an explicit provenance label).
+const westNote = "registry-derived (Equasis/GUR aggregator), below primary source; UK notice states no location";
+write("companies.csv",
+  ["Name", "IMO company number", "Jurisdiction (incorporation)", "Described as based in", "Address country", "Registered address", "Tax ID", "Registration number", "Source URL", "Jurisdiction provenance"],
+  companies.map((c: any) => {
+    const west = c.id === "west-maritime-services-and-trading-inc";
+    const jur = west ? "Saint Kitts and Nevis" : (c.jurisdiction ?? "");
+    const reg = west ? "0035133" : (c.registrationNumber ?? "");
+    const prov = west ? westNote
+      : (c.jurisdiction && c.jurisdiction !== "not stated in source" ? "primary (issuing action)" : "");
+    return [c.name, c.imoCompanyNumber ?? "", jur, c.describedAsBasedIn ?? "",
+      cmap.get(c.addressCountryId) ?? "", c.registeredAddress ?? "", c.taxId ?? "", reg,
+      c.sourceUrl ?? "", prov];
+  }));
 
-write("port.csv", csv(
-  ports.map((p) => ({
-    name: p.name, unlocode: p.unlocode,
-    country: p.countryId ? countryName.get(p.countryId) : "",
-    lat: p.lat, lon: p.lon, coordinateStatus: p.coordinateStatus ?? "", coordinateSourceType: p.coordinateSourceType ?? "",
-    codeSourceUrl: p.codeSourceUrl ?? "", coordinateSourceUrl: p.coordinateSourceUrl ?? "",
-    sourceVersion: p.sourceVersion ?? "", verifiedAt: p.verifiedAt ?? "",
-  })),
-  ["name", "unlocode", "country", "lat", "lon", "coordinateStatus", "coordinateSourceType", "codeSourceUrl", "coordinateSourceUrl", "sourceVersion", "verifiedAt"],
-));
+// 4. Government bodies.
+write("government_bodies.csv", ["Name", "Jurisdiction", "Source URL"],
+  authorities.map((a: any) => [a.name, a.jurisdiction ?? "", a.sourceUrl ?? ""]));
 
-write("ownership.csv", csv(
-  ownership.map((o) => ({
-    vessel: vesselName.get(o.vesselImo) ?? o.vesselImo,
-    company: companyName.get(o.companyId) ?? o.companyId,
-    relationType: o.role, confidence: o.confidence,
-    listingSourceUrl: o.listingSourceUrl, predicateEvidenceUrl: o.predicateEvidenceUrl,
-    evidenceQuote: o.evidenceQuote, evidenceDate: o.evidenceDate ?? "", roleCurrency: o.roleCurrency ?? "", note: o.note ?? "",
-  })),
-  ["vessel", "company", "relationType", "confidence", "listingSourceUrl", "predicateEvidenceUrl", "evidenceQuote", "evidenceDate", "roleCurrency", "note"],
-));
+// 5. Sanctions programmes as entities.
+const progs = [...new Set(designations.map((d: any) => d.program).filter(Boolean))].sort() as string[];
+write("sanctions_programmes.csv", ["Name", "Administering authority"],
+  progs.map((p) => [p, p.includes("EO1") ? "Office of Foreign Assets Control (OFAC)" : "UK FCDO / OFSI"]));
 
-write("companylink.csv", csv(
-  companyLinks.map((p) => ({
-    fromCompany: companyName.get(p.fromCompanyId) ?? p.fromCompanyId,
-    toCompany: companyName.get(p.toCompanyId) ?? p.toCompanyId,
-    relation: p.relation, confidence: p.confidence, note: p.note ?? "", sourceUrl: p.sourceUrl,
-  })),
-  ["fromCompany", "toCompany", "relation", "confidence", "note", "sourceUrl"],
-));
+// 6. Sanctioned-by relations (Designation modelled as a relation).
+write("sanctioned_by_relations.csv",
+  ["From (entity)", "From type", "To (Government Body)", "Programme", "Designation date", "Status", "Date removed", "Unique ID", "Nature", "Source URL", "Status verified at", "Status source"],
+  designations.map((d: any) => [
+    vmap.get(d.appliesToId) ?? comap.get(d.appliesToId) ?? d.appliesToId,
+    d.appliesToType, amap.get(d.authorityId) ?? d.authorityId, d.program ?? "",
+    d.designationDate ?? "", d.currentStatus, d.dateRemoved ?? "", d.uniqueId ?? "",
+    d.nature ?? "", d.sourceUrl ?? "", d.statusVerifiedAt ?? "", d.statusSource ?? "",
+  ]));
 
-write("reportedvoyage.csv", csv(
-  reportedVoyages.map((rv) => ({
-    vessel: vesselName.get(rv.vesselImo) ?? rv.vesselImo,
-    origin: portName.get(rv.originPortId) ?? rv.originPortId,
-    destination: portName.get(rv.destinationPortId) ?? rv.destinationPortId,
-    reportedPeriod: rv.reportedPeriod, timeGranularity: rv.timeGranularity,
-    observationType: rv.observationType, note: rv.note ?? "", sourceUrl: rv.sourceUrl,
-  })),
-  ["vessel", "origin", "destination", "reportedPeriod", "timeGranularity", "observationType", "note", "sourceUrl"],
-));
+// 7. Ownership relations — four-role controlled vocabulary; linkedTo excluded (not ownership).
+const ownRows = ownership.filter((o: any) => ROLE[o.role]);
+write("ownership_relations.csv",
+  ["Vessel", "Vessel IMO", "Company", "Role", "Confidence", "Evidence date", "Evidence quote", "Listing source URL", "Predicate evidence URL"],
+  ownRows.map((o: any) => [
+    vmap.get(o.vesselImo), parseInt(o.vesselImo, 10), comap.get(o.companyId), ROLE[o.role],
+    o.confidence ?? "", o.evidenceDate ?? "", o.evidenceQuote ?? "",
+    o.listingSourceUrl ?? "", o.predicateEvidenceUrl ?? "",
+  ]));
 
-write("beneficialowner.csv", csv(
-  beneficialOwners.map((b) => ({
-    owner: b.ownerType === "person" ? personName.get(b.ownerId) ?? b.ownerId : companyName.get(b.ownerId) ?? b.ownerId,
-    ownerType: b.ownerType, company: companyName.get(b.companyId) ?? b.companyId,
-    confidence: b.confidence, sourceUrl: b.sourceUrl,
-  })),
-  ["owner", "ownerType", "company", "confidence", "sourceUrl"],
-));
+// 8. Linked-to relations (generic OFAC "Linked To" + company-company links).
+const linked: unknown[][] = ownership
+  .filter((o: any) => o.role === "linkedTo")
+  .map((o: any) => [vmap.get(o.vesselImo), "vessel", comap.get(o.companyId),
+    o.evidenceQuote ?? "", o.listingSourceUrl ?? o.predicateEvidenceUrl ?? ""]);
+for (const c of companyLinks) linked.push([
+  comap.get(c.fromCompanyId), "company", comap.get(c.toCompanyId), c.note ?? "", c.sourceUrl ?? ""]);
+write("linked_to_relations.csv", ["From", "From type", "To", "Nature / evidence", "Source URL"], linked);
+
+// 9. Countries referenced as relation targets.
+const used = new Set<string>();
+for (const v of vessels) if (v.flagCountryId) used.add(v.flagCountryId);
+for (const c of companies) if (c.addressCountryId) used.add(c.addressCountryId);
+write("countries.csv", ["Name", "ISO alpha-3"],
+  [...used].sort().map((i) => [cmap.get(i), i]));
 
 console.log("done.");

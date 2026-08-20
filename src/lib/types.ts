@@ -33,7 +33,7 @@ export type Confidence = "confirmed" | "probable" | "reported" | "unconfirmed";
 // listed              — flag present and current in the source
 // removed-from-source — the source struck the flag without replacement (do not infer a country)
 // unknown             — never stated
-export type FlagStatus = "listed" | "removed-from-source" | "unknown";
+export type FlagStatus = "listed" | "delisted" | "removed-from-source" | "unknown";
 
 export interface Country {
   id: string;
