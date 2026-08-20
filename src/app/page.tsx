@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { geoUrl } from "../lib/geo";
 import {
   dataset,
   ownersOf,
@@ -79,10 +80,10 @@ export default function Overview() {
             const pillClass = st === "active" ? "binding" : st === "removed" ? "removed" : st === "research" ? "research" : "unverified";
             return (
               <tr key={v.imo}>
-                <td>{v.name}</td>
+                <td>{(() => { const g = geoUrl("vessels", v.imo); return g ? <a href={g} target="_blank" rel="noreferrer">{v.name} <span className="mono" style={{ color: "var(--muted)" }}>↗</span></a> : v.name; })()}</td>
                 <td><span className="mono">{v.imo}</span></td>
                 <td>{flag}</td>
-                <td>{rels.length ? rels.map((r) => r.company.name).join(", ") : <span className="mono" style={{ color: "var(--muted)" }}>—</span>}</td>
+                <td>{rels.length ? rels.map((r, i) => { const g = geoUrl("companies", r.company.id); return (<span key={r.company.id}>{i > 0 ? ", " : ""}{g ? <a href={g} target="_blank" rel="noreferrer">{r.company.name}</a> : r.company.name}</span>); }) : <span className="mono" style={{ color: "var(--muted)" }}>—</span>}</td>
                 <td><span className="mono" style={{ color: "var(--muted)" }}>{rels.length ? rels.map((r) => ROLE_SHORT[r.link.role] ?? r.link.role).join(", ") : "—"}</span></td>
                 <td>
                   <span className={`pill ${pillClass}`}>

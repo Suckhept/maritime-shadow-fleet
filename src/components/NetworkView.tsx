@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import cytoscape from "cytoscape";
 import { buildNetwork } from "../lib/graph";
 import EdgeDetails, { type EdgeData } from "./EdgeDetails";
+import { geoUrlForNodeId } from "../lib/geo";
 
 export default function NetworkView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -63,6 +64,10 @@ export default function NetworkView() {
       maxZoom: 2.5,
     });
 
+    cy.on("tap", "node", (evt) => {
+      const g = geoUrlForNodeId(evt.target.id());
+      if (g) window.open(g, "_blank", "noopener");
+    });
     cy.on("tap", "edge", (evt) => {
       cy.edges().removeClass("sel");
       evt.target.addClass("sel");

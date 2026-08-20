@@ -7,3 +7,5 @@ data/dataset.json
 scripts/.raw/
 data/derived/
 *.tsbuildinfo
+.DS_Store
+**/.DS_Store
