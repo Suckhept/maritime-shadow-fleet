@@ -1,8 +1,53 @@
 {
   "spaceId": "89bd89bf28ff8a0963faf92a8c905e20",
-  "vessels": {},
-  "companies": {},
-  "authorities": {},
-  "programmes": {},
+  "vessels": {
+    "9610808": "7ecd660741524f4cb0135758fe4879b2",
+    "9610793": "065b3d0e35724f15844e24c5c8bfb8e9",
+    "9270529": "a42013f3db71466aad02f43dcb7c7090",
+    "9256078": "4f6571079464455bb5d7e5f78dd2de6f",
+    "9256054": "eb3af210920749e08c2cbce93c3bf034",
+    "9413559": "8ccd6ff0ca694f3f8f97c9e2c5d63b77",
+    "9412359": "62dc328438b6493cb0a1e9d6454f9e85",
+    "9411020": "98fdb94d02874efa81b0c99c2cb2cea1",
+    "9341067": "477457aad4084275947efb56fc572d2a",
+    "9312884": "35a5ab140af04e50b792300c0499a000",
+    "9341093": "d0af55bcfe464f8b8cd42f407deb26a5",
+    "9312896": "51c826197ae54140912ed6024cebb25e",
+    "9339313": "4e2886669e7b41b28f4333b8aa0a34a7",
+    "9249128": "724499102f224590afb72ce4c3d6aa45",
+    "9381732": "884a43bcac844c31813e1342b00ff878",
+    "9410894": "aae375e8f7734898b5d288281d231f95",
+    "9410870": "6f279f544ba745949cd8594749763ff3",
+    "9249087": "4a3c6234e7af4608a1bd7816d86fdc6f",
+    "9381744": "4a89f83417ba48e890bc91a504f53bc4",
+    "9864837": "8d58648ee7f14e8c8613585fe3db7215",
+    "9324277": "643ac8529edc4ff0903fe930b2402677",
+    "9610810": "b3386ff28a7f4adb9a55356c23eaebc7",
+    "9421960": "bc5e15b4aa064bc9825c477412709065",
+    "9334038": "6bdb1f9d0d184daf9ef6d0a9b5c7e5a2",
+    "9277735": "266bd49b15f44150b71e7f93b34fb50d"
+  },
+  "companies": {
+    "joint-stock-company-sovcomflot": "4a5e443cf92f46b5b8b167d2228b9917",
+    "hennesea-holdings-limited": "52bb4942c60d425ba4a03fbb2590f0c0",
+    "streymoy-shipping-limited": "9255d5bbdabf4ee79777fc81a26b562a",
+    "gotik-shipping-co": "2984e42362aa4a4eb6647f4086d54aea",
+    "plio-energy-cargo-shipping-opc-private-limited": "dc5eba4eda2b49d69c66425042c4d674",
+    "limited-liability-company-arctic-lng-2": "4cce62f39a8f44588655794882495ebb",
+    "lumber-marine-sa": "d8cf0f82a7484ff9b410c2a5e6ab3341",
+    "ice-pearl-navigation-corp": "37ab9c27a81c478ca2d3c38ae7ea27e1",
+    "west-maritime-services-and-trading-inc": "279b3f148bc64e088fa3ea1c26d5508e",
+    "winky-international-limited": "a592f27c7a1a4c2bb348bf60d5493556"
+  },
+  "authorities": {
+    "ofac": "6d4d85f0292f41d3834fc168db6f239c",
+    "uk-fcdo": "22c82437c6ce4e12841a7b4a23dde3a6",
+    "kse-institute": "f316b0bd538043c5b13cf525c9daceb0"
+  },
+  "programmes": {
+    "RUSSIA-EO14024": "1b622db192fb4285ac8dcac60f381661",
+    "The Russia (Sanctions) (EU Exit) Regulations 2019": "4704265077cd49b4946ea590788b4af7",
+    "VENEZUELA-EO13850": "0d71e18522a543c88a343f4d7c26eacd"
+  },
   "countries": {}
 }
